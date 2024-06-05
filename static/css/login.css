@@ -1,0 +1,79 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-image: url(/static/images/bg-register.jpg);
+    background-size: cover;
+}
+
+.login-container {
+    background-color: rgba(128, 0, 128, 0.601);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    color: white;
+    background-image: url(/static/images/bg-img.jpg);
+    background-size: cover;
+    /* text-align: center; */
+}
+
+h2 {
+    margin-left: 150px;
+    margin-bottom: 20px;
+}
+
+table ,td,th{
+    /* border: 1px solid black ; */
+    border-collapse: collapse;
+    padding: 8px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"], input[type="password"] {
+    width: 330px;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+
+.new-user {
+    font-size: medium;
+    padding-top: 10px;
+    text-align: center;
+}
+
+#error-message{
+    color: red; 
+    font-weight: bold;
+}
+
+a{
+    color: green; 
+    font-weight: bold;
+}
+/* a:hover {background-color: red;} */

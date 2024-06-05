@@ -1,0 +1,48 @@
+body {
+    background-image: url("/static/images/bg-bill.png");
+    background-repeat: no-repeat; 
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    padding-top: 100px;
+
+  }
+
+table,
+th,
+td {
+    /* border: 1px solid black; */
+    border-collapse: collapse;
+    background-color: rgba(98, 1, 98, 0.574);
+    color: white;
+    padding: 20px;
+    font-size: 20px;
+}
+
+table{
+    background-image: url(/static/images/bg-billtable.jpg);
+    background-size: cover;
+}
+
+button{
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+    color: wheat;
+}
+
+.back{
+    height: 40px;
+    width: 100px;
+    margin-left: 300px;
+    color: wheat;
+    background-color: purple;
+    font-size: 14px;
+}
+
+.print{
+    height: 25px;
+    width: 60px;
+}

@@ -1,0 +1,61 @@
+body{
+    background-image: url(/static/images/bg-img.jpg);
+    background-size: cover;
+}
+
+.nav{
+    display: flex;
+    color: rgb(82, 1, 82);
+    padding: 20px;
+    /* border: 1px solid black; */
+}
+
+.logo{
+    height: 50px;
+    margin: 16px;
+    margin-left: 50px;
+    background-color: rgb(255, 235, 205);
+    border-radius: 50%;
+}
+
+.btn-container{
+    margin-left: 950px;
+    
+}
+
+.btn{
+    height: 50px;
+    width: 120px;
+    margin: 16px;
+    color: rgb(82, 1, 82);
+    background-color: plum;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 22px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgba(221, 160, 221, 0.672);
+    color: #000;
+}
+
+.text-container{
+    /* border: 1px solid black; */
+    font-size: 60px;
+    margin: 150px;
+    width: 500px;
+    font-weight: bold;
+}
+
+.car{
+    height: 400px;
+    width: 600px;
+    margin: 200px;
+    border: 1px solid purple;
+    background-image: url(/static/images/car.avif);
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+}

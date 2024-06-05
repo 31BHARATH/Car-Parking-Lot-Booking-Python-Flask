@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/static/images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/static/css/download.css">
+    <title>Download</title>
+    <style>
+        body {
+            background-image: url("/static/images/bg-bill.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .logo {
+            height: 50px;
+            margin: 16px;
+            margin-left: 50px;
+            background-color: rgb(255, 235, 205);
+            border-radius: 50%;
+        }
+        .nav {
+            display: flex;
+            color: rgb(82, 1, 82);
+            padding: 20px;
+            margin-left: 50px;
+        }
+        table, th, td {
+            border-collapse: collapse;
+            background-color: rgba(98, 1, 98, 0.574);
+            color: white;
+            padding: 10px;
+            font-size: 20px;
+            margin: 0px 0px 0px 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <img src="/static/images/favicon.png" alt="ParkEase" class="logo">
+        <h1>ParkEase Booking</h1>
+    </div>
+    <table>
+        <tr>
+            <td colspan="2" style="text-align: center;">
+                <p id="slot_name">{{ booking.slot_name }}</p>
+            </td>
+        </tr>
+        <tr>
+            <th>Name:</th>
+            <td>
+                <p id="name">{{ booking.username }}</p>
+            </td>
+        </tr>
+        <tr>
+            <th>Registration Number:</th>
+            <td>
+                <p id="reg_number">{{ booking.reg_number }}</p>
+            </td>
+        </tr>
+        <tr>
+            <th>Check-In Time:</th>
+            <th>Check-Out Time:</th>
+        </tr>
+        <tr>
+            <td>
+                <p id="check_in_time">{{ booking.check_in_time }}</p>
+            </td>
+            <td>
+                <p id="check_out_time">{{ booking.check_out_time }}</p>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

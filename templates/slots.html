@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/slots.css">
+    <link rel="shortcut icon" href="/static/images/favicon.png" type="image/x-icon">
+    <title>ParkEase Booking</title>
+</head>
+
+<body>
+    <div class="nav">
+        <img src="/static/images/favicon.png" alt="ParkEase" class="logo">
+        <h1>ParkEase Booking</h1>
+        <form action="/logout" method="POST" style="display: inline;">
+            <button type="submit" class="logout">Logout</button>
+        </form>
+    </div>
+    <div class="error-message" id="error-message"></div>
+    <div class="container">
+        <table id="slots-table">
+            <tr>
+                <td colspan="5">
+                    <h1 style="text-align: center;">SELECT SLOT</h1>
+                </td>
+            </tr>
+        </table>
+        <div class="btns">
+            <button id="park">Park</button><br>
+            <button id="release">Release</button><br>
+            <button id="printbill">History</button><br>
+        </div>
+    </div>
+    <div class="box-container">
+        <div class="box box1">Available</div>
+        <div class="box box2">Booked</div>
+        <div class="box box3">Booked By<span style="margin-left:3px ;"> You</span></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let selectedSlotId = null;
+    
+            function fetchSlots() {
+                fetch('/api/slots')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            document.getElementById('error-message').innerText = data.error;
+                            return;
+                        }
+                        renderSlots(data.slots, data.user_slot_id);
+                    });
+            }
+    
+            function renderSlots(slots, userSlotId) {
+                const table = document.getElementById('slots-table');
+                for (let row = 0; row < 5; row++) {
+                    const tr = document.createElement('tr');
+                    for (let col = 0; col < 5; col++) {
+                        const slot = slots[row * 5 + col];
+                        const td = document.createElement('td');
+                        const div = document.createElement('div');
+                        div.classList.add('slot');
+    
+                        if (!slot.is_available) div.classList.add('booked');
+                        if (slot.id == userSlotId) div.classList.add('user-booked');
+                        div.id = slot.id;
+                        div.innerText = slot.slot_name;
+                        div.addEventListener('click', () => {
+                            document.querySelectorAll('.slot').forEach(s => s.classList.remove('selected'));
+                            if (div.classList.contains('booked') && !div.classList.contains('user-booked')) {
+                                alert('This slot is already booked.');
+                            } else {
+                                div.classList.add('selected');
+                                selectedSlotId = slot.id;
+                            }
+                        });
+                        td.appendChild(div);
+                        tr.appendChild(td);
+                    }
+                    table.appendChild(tr);
+                }
+            }
+    
+            document.getElementById('park').addEventListener('click', function () {
+                if (!selectedSlotId) {
+                    alert('Please select a slot before parking.');
+                    return;
+                }
+    
+                fetch('/api/reserve', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        slot_id: selectedSlotId
+                    })
+                })
+    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            alert(data.error);
+                            document.querySelector('.slot.selected').classList.remove('selected');
+                            selectedSlotId = null;
+                        } else {
+                            alert(data.message);
+                            location.reload();
+                        }
+                    });
+            });
+    
+            document.getElementById('release').addEventListener('click', function () {
+                if (!selectedSlotId) {
+                    alert('Please select a slot before releasing.');
+                    return;
+                }
+                fetch('/api/release', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        slot_id: selectedSlotId
+                    })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            alert(data.error);
+                            document.querySelector('.slot.selected').classList.remove('selected');
+                            selectedSlotId = null;
+                        } else {
+                            alert(data.message);
+                            location.reload();
+                        }
+                    });
+            });
+    
+            document.getElementById('printbill').addEventListener('click', function () {
+                window.location.href = '/printbill';
+            });
+    
+            fetchSlots();
+            
+        });
+    
+        window.addEventListener("popstate", function (event) {
+            if (localStorage.getItem('loggedIn') == 'true') {
+                window.location.href = '/';
+            }
+        });
+    </script>
+    
+</body>
+
+</html>

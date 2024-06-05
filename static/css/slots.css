@@ -1,0 +1,124 @@
+body {
+    background-color: rgba(122, 0, 128, 0.409);
+    background-image: url(/static/images/bg);
+    background-size: cover;
+}
+
+/* h1 {
+    text-align: center;
+    background-color: purple;
+} */
+
+.nav{
+    display: flex;
+}
+
+.logo{
+    height: 50px;
+    margin: 16px;
+    margin-left: 100px;
+    background-color: rgb(255, 235, 205);
+    border-radius: 50%;
+}
+
+.logout{
+    margin: 20px 0px 0px 1100px;
+    width: 150px;
+    border-radius: 20px;
+    border: none;
+}
+
+.error-message{
+    color: red; 
+    font-size: 20px;
+}
+
+table,
+th,
+td {
+    border-collapse: collapse;
+    padding: 7px;
+    margin: 50px 0px 0px 200px;
+}
+
+.slot {
+    border: 3px solid rgb(23, 165, 23);
+    padding: 30px;
+    cursor: pointer;
+}
+
+.slot.booked {
+    border-color: red;
+}
+
+.slot.selected {
+    background-color: rgb(33, 181, 33);
+    border: 3px solid blue;
+    color: wheat;
+}
+
+.slot.user-booked {
+    background-color: red;
+    /* color: white; */
+}
+
+.container {
+    display: flex;
+}
+
+.btns {
+    margin: 120px 0px 0px 200px;
+    padding: 120px 0px 0px 150px;
+    /* border: 1px solid black; */
+}
+
+button {
+    height: 50px;
+    width: 300px;
+    margin-bottom: 30px;
+    font-size: 18px;
+    background-color: purple;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgba(128, 0, 128, 0.681);
+    /* border: 1px solid purple; */
+}
+
+.box-container {
+    display: flex;
+    /* border: 1px solid black; */
+    padding-left: 220px;
+    margin-top: 10px;
+}
+
+.box {
+    height: 50px;
+    width: 110px;
+    margin-left: 20px;
+    color: white;
+}
+
+.box1 {
+    border: 3px solid rgb(33, 181, 33);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box2 {
+    border: 3px solid red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box3 {
+    border: 2px solid red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: red;
+}

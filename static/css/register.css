@@ -1,0 +1,59 @@
+body {
+    background-image: url(/static/images/bg-register.jpg);
+    background-size: cover;
+    padding: 170px 0px 0px 650px;
+}
+
+.container {
+    /* background-color: rgba(128, 0, 128, 0.721); */
+    width: 560px;
+    padding: 20px 0px 20px 0px;
+    color: white;
+    font-size: 18px;
+    background-image: url(/static/images/bg-img.jpg);
+    background-size: cover;
+    border-radius: 20px;
+}
+
+table,
+td,
+th {
+    /* border: 1px solid black; */
+    border-collapse: collapse;
+    padding: 10px;
+    margin-left: 50px;
+}
+
+input, select{
+    height: 25px;
+    border: none;
+    
+}
+
+#name,#email,#phone,#reg,#pass,#retype{
+    width: 230px;
+}
+
+#submit{
+    height: 40px;
+    width: 100%;
+    background-color: #4CAF50;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#submit:hover {
+    background-color: #45a049;
+}
+
+#errorMessage{
+    color: red;
+    font-weight: bold;
+}
+
+a{
+    font-weight: bold; 
+    color: green;
+}
+/* a:hover {background-color: red;} */

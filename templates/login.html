@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/static/images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>ParkEase Booking</title>
+    <link rel="stylesheet" href="/static/css/login.css">
+</head>
+
+<body>
+    <div class="login-container">
+        <h2>LogIn</h2>
+        <p id="error-message"></p>
+        <form id="login-form">
+            <table>
+                <tr>
+                    <td><label for="emailorphone" id="email">Email/Phone No :</label></td>
+                </tr>
+                <tr>
+                    <td><input type="text" id="emailorphone" name="emailorphone" placeholder="Enter Email or Phone" autofocus></td>
+                </tr>
+                <tr>
+                    <td><label for="password">Password :</label></td>
+                </tr>
+                <tr>
+                    <td><input type="password" id="password" name="password" placeholder="Enter Password">
+                        <span style="position: absolute; margin-left:-25px; margin-top: 6px;">
+                            <i class="fas fa-eye-slash" id="togglePassword" style="cursor: pointer; color: black;"></i>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button type="submit">Login</button></td>
+                </tr>
+            </table>
+        </form>
+        <div class="new-user">
+            <p>New User? <a href="/register">Register here</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const togglePassword = document.getElementById("togglePassword");
+            const passwordField = document.getElementById("password");
+    
+            togglePassword.addEventListener("click", function () {
+                const type = passwordField.getAttribute("type") === "password" ? "text" : "password";
+                passwordField.setAttribute("type", type);
+                this.classList.toggle("fa-eye-slash");
+                this.classList.toggle("fa-eye");
+            });
+    
+            const loginForm = document.getElementById("login-form");
+            loginForm.addEventListener("submit", async function (event) {
+                event.preventDefault();
+    
+                const emailOrPhone = document.getElementById("emailorphone").value;
+                const password = document.getElementById("password").value;
+    
+                const response = await fetch("/api/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ emailorphone: emailOrPhone, password: password })
+                });
+    
+                const result = await response.json();
+    
+                if (response.ok) {
+                    if (result.success) {
+                        localStorage.setItem('loggedIn', 'true');
+                        if (result.has_slot) {
+                            history.pushState(null, null, '/slots');
+                            window.location.href = "/slots";
+                        } else if (result.no_slots_message) {
+                            history.pushState(null, null, '/slots');
+                            window.location.href = "/slots?no_slots_message=" + encodeURIComponent(result.no_slots_message);
+                        } else {
+                            history.pushState(null, null, '/slots');
+                            window.location.href = "/slots";
+                        }
+                    } else {
+                        document.getElementById("error-message").textContent = result.error;
+                    }
+                } else {
+                    document.getElementById("error-message").textContent = result.error;
+                }
+            });
+        });
+    </script>
+    
+</body>
+
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="/static/images/favicon.png" type="image/x-icon">
+    <title>Bill</title>
+    <link rel="stylesheet" href="/static/css/bill.css">
+</head>
+
+<body>
+    <div>
+        <form action="">
+            <table class="center">
+                <tr>
+                    <th colspan="2" style="font-size: 30px;">Bill</th>
+                </tr>
+                <tr>
+                    <td><label for="username">USER NAME</label></td>
+                    <td><input type="text" name="username" id="username" value="{{ booking.username }}" readonly></td>
+                </tr>
+                <tr>
+                    <td><label for="regnumber">REGISTRATION NUMBER</label></td>
+                    <td><input type="text" name="regnumber" id="regnumber" value="{{ booking.reg_number }}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="slotname">SLOT NAME</label></td>
+                    <td><input type="text" name="slotname" id="slotname" value="{{ booking.slot_name }}" readonly></td>
+                </tr>
+                <tr>
+                    <td><label for="checkin">CHECK IN TIME</label></td>
+                    <td><input type="text" name="checkin" id="checkin" value="{{ booking.check_in_time }}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="checkout">CHECK OUT TIME</label></td>
+                    <td><input type="text" name="checkout" id="checkout" value="{{ booking.check_out_time }}" readonly>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <button type="button" onclick="printPage()">Print</button>
+        <button type="button" onclick="goBack()">Back</button>
+    </div>
+
+    <div class="printable" id="printable">
+        <div class="nav">
+            <img src="/static/images/favicon.png" alt="ParkEase" class="logo">
+            <h1>ParkEase Booking</h1>
+        </div>
+        <table>
+            <tr>
+                <td colspan="2" style="font-size: 30px;">SLOT:
+                    <p id="print_slot_name" style="border: 2px solid black;text-align: center;">{{ booking.slot_name }}</p>
+                </td>
+            </tr>
+            <tr style="font-size: 24px;">
+                <th>Name:</th>
+                <td>
+                    <p id="print_name">{{ booking.username }}</p>
+                </td>
+            </tr>
+            <tr style="font-size: 24px;">
+                <th>Registration Number:</th>
+                <td>
+                    <p id="print_reg_number">{{ booking.reg_number }}</p>
+                </td>
+            </tr>
+            <tr style="font-size: 24px;">
+                <th>Check-In Time:</th>
+                <th>Check-Out Time:</th>
+            </tr>
+            <tr style="font-size: 24px;">
+                <td>
+                    <p id="print_check_in_time">{{ booking.check_in_time }}</p>
+                </td>
+                <td>
+                    <p id="print_check_out_time">{{ booking.check_out_time }}</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        function printPage() {
+            
+            document.getElementById('print_slot_name').innerText = document.getElementById('slotname').value;
+            document.getElementById('print_name').innerText = document.getElementById('username').value;
+            document.getElementById('print_reg_number').innerText = document.getElementById('regnumber').value;
+            document.getElementById('print_check_in_time').innerText = document.getElementById('checkin').value;
+            document.getElementById('print_check_out_time').innerText = document.getElementById('checkout').value;
+
+            document.getElementById('printable').style.display = 'block';
+
+            window.print();
+
+            document.getElementById('printable').style.display = 'none';
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+body {
+    background-image: url("/static/images/bg-bill.png");
+    background-repeat: no-repeat; 
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    padding-top: 150px;
+
+  }
+
+.center{
+    background-color: rgba(98, 1, 98, 0.574);
+    color: white;
+}
+
+body{
+    font-family: Arial ,sans-serif;
+    margin: 20px;
+
+}
+
+table,th,td{
+    /* border: 1px solid black; */
+    padding: 18px;
+}
+
+button{
+    /* margin-left: 150px; */
+    height: 50px;
+    width: 258px;
+    color: wheat;
+    font-size: 16px;
+    background-color: rgba(98, 1, 98, 0.574);
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+input{
+    height: 25px;
+    font-size: 16px;
+}
+
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #printable, #printable * {
+        visibility: visible;
+    }
+    #printable {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.printable {
+    display: none;
+}
+.logo {
+    height: 50px;
+    margin: 16px;
+    background-color: rgb(255, 235, 205);
+    border-radius: 50%;
+}
+.nav {
+    display: flex;
+    color: rgb(82, 1, 82);
+    padding: 20px;
+}
